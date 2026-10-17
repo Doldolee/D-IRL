@@ -97,6 +97,12 @@ TA-dSNIPS.
 
 ![Original paper and synthetic data: TA-dSNIPS](figures/06b_ta_dsnips.png)
 
+Additional comparison using only the 12 older-group synthetic trajectories, evaluated against both ODA and YDA. The original paper is on the left and the synthetic data on the right.
+
+<img src="figures/06c_ta_adv_older.png" alt="Older-group-only TA-Adv: original paper and synthetic trajectories" width="600">
+
+<img src="figures/06d_ta_dsnips_older.png" alt="Older-group-only TA-dSNIPS: original paper and synthetic trajectories" width="600">
+
 ## 6. Limitations of the synthetic data
 
 Although the synthetic data show similar road geometry and trends in some metrics, they do not fully reproduce temporal state changes, relationships between variables or the spatial extent of scenario regions. The following diagnostics compare the original and synthetic trajectories.

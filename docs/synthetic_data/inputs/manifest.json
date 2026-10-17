@@ -7,7 +7,7 @@
     "YDA"
   ],
   "contents": "Synthetic plotting coordinates, existing embedding, recovered differences and trajectory scores; exact published panel images. No original per-record arrays, policies or private research files.",
-  "reproduction_scope": "Render the four core comparison figures from existing plot inputs; no model evaluation or embedding refit.",
+  "reproduction_scope": "Render the core comparison figures, including all-trajectory and older-group-only TA panels, from existing plot inputs; no model evaluation or embedding refit.",
   "sha256": {
     "synthetic_plot_inputs.npz": "ff265aee600cc0000eb06d4e9b868a75d9eb1657ee5bbc733e6286c6c7adfb2c",
     "paper_tsne.png": "ba933504f5f0ac62379bc748a30aa91c16630d0636b21c16913d697463dfd154",
@@ -17,5 +17,31 @@
     "paper_ta2.png": "a35a3ab156d51403288986d74e4cb4a220d62565868c766663f8443c90968cdd",
     "paper_ta3.png": "bba0f81f68e7492460de228f3aa5deaef8c94f800618dde40ab642755d66b843",
     "render_settings.json": "590eafdde16edab98ec69f5bbfab3007193ae8622d91a9a2066f9012e10529a1"
-  }
+  },
+  "trajectory_source_groups": [
+    "ordinary",
+    "ordinary",
+    "ordinary",
+    "ordinary",
+    "ordinary",
+    "ordinary",
+    "ordinary",
+    "ordinary",
+    "ordinary",
+    "ordinary",
+    "ordinary",
+    "ordinary",
+    "senior",
+    "senior",
+    "senior",
+    "senior",
+    "senior",
+    "senior",
+    "senior",
+    "senior",
+    "senior",
+    "senior",
+    "senior",
+    "senior"
+  ]
 }

@@ -14,7 +14,7 @@
     },
     "paper_display_panels": "Actual embedded Figure5c,5d,6a; underlying rows not reconstructed for this display comparison",
     "paper_TA_population": "Older trajectories; exact split not identified by the original figure caption",
-    "synthetic_TA_population": "All24 trajectories,12 younger-source and12 older-source"
+    "synthetic_TA_population": "Main panels: all24 trajectories,12 younger-source and12 older-source. Additional panels: the same12 older-source trajectories against both ODA and YDA."
   },
   "policies": [
     {
@@ -180,6 +180,8 @@
     "05_position_high_gap",
     "06_ta_distributions",
     "06b_ta_dsnips",
+    "06c_ta_adv_older",
+    "06d_ta_dsnips_older",
     "08_limitations_diagnostics",
     "09_limitations_state_relationships"
   ],
@@ -190,9 +192,9 @@
   "CSV_included": false,
   "OPE_table_format": "Paper Table1: DQI row groups, four policies, DR/FQE/K-WIS grouped Mean/95% CI columns",
   "position_scale_legend": false,
-  "position_scenarios": "Scenario1–4 callouts point to actual synthetic rows nearest within-scenario coordinate medians; paper-style text and leader lines. Original real-data region boundaries are not reused.",
+  "position_scenarios": "Scenario1\u20134 callouts point to actual synthetic rows nearest within-scenario coordinate medians; paper-style text and leader lines. Original real-data region boundaries are not reused.",
   "core_figure_command": "python -m synthetic_generation.figures --output outputs/figures",
-  "core_renderer_sha256": "32e73fe1ca021cd24993a1a40685f6039f3469c5c81285f72252171e6f90fec2",
+  "core_renderer_sha256": "1f1b45dc77d71cbae5c496385e793c0c6451fb54f8747eb15b9425e28bb868a5",
   "plot_input_manifest": "inputs/manifest.json",
   "core_figure_runtime": "CPU, Python>=3.11; dependencies in requirements-figures.txt; rendering cached plot inputs, no private data/weights or score/embedding refit",
   "generation_model": {
@@ -231,5 +233,35 @@
     "annotation_position": "lower right",
     "data_representation": "2D trajectory segments and joined full route; no volumetric data cubes"
   },
-  "readme_execution_section": "Commands only; implementation/input/metadata/checksum link sentence removed at user request"
+  "readme_execution_section": "Commands only; implementation/input/metadata/checksum link sentence removed at user request",
+  "TA_additional_older_comparison": {
+    "figures": [
+      "06c_ta_adv_older",
+      "06d_ta_dsnips_older"
+    ],
+    "population": "Older-source synthetic trajectories only",
+    "n_trajectories": 12,
+    "trajectory_ids": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "references": [
+      "ODA",
+      "YDA"
+    ],
+    "selection": "Cohort filter only; unchanged accepted per-trajectory scores for both reference policies",
+    "cohort_labels": "inputs/manifest.json: trajectory_source_groups; aligned with synthetic_plot_inputs.npz trajectory offsets and reproduction_inputs/manifest.json record order",
+    "readme_width_px": 600,
+    "command": "python -m synthetic_generation.figures --figure ta-older --output outputs/ta_older"
+  }
 }

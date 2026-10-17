@@ -94,7 +94,7 @@ python -m synthetic_generation.figures --output outputs/figures
 python -m synthetic_generation.overview --output outputs/architecture
 ```
 
-The first command renders four comparison figures from stored plot inputs,
+The first command renders six comparison figures, including the additional older-group TA panels, from stored plot inputs,
 including an existing t-SNE embedding. It does not refit t-SNE or recompute scores.
 The architecture diagram is generated as SVG and PNG. Diffusion generation and
 training commands are documented in `synthetic_generation/README.md`.

@@ -26,6 +26,7 @@ STEMS = {
     "tsne": ("04_synthetic_tsne",),
     "position": ("05_position_high_gap",),
     "ta": ("06_ta_distributions", "06b_ta_dsnips"),
+    "ta-older": ("06c_ta_adv_older", "06d_ta_dsnips_older"),
 }
 
 
@@ -56,6 +57,12 @@ def load_inputs(folder):
             raise ValueError(f"Expected 24 trajectories by two references: {key}")
     if any(not np.isfinite(value).all() for value in data.values()):
         raise ValueError("Plot arrays must be finite")
+    groups = np.asarray(manifest["trajectory_source_groups"])
+    if (groups.shape != (24,)
+            or not np.isin(groups, ("ordinary", "senior")).all()
+            or np.count_nonzero(groups == "senior") != 12):
+        raise ValueError("Expected 12 younger-source and 12 older-source trajectories")
+    data["ta_older_mask"] = groups == "senior"
     panels = {}
     for name in ("paper_tsne", "paper_position", *(f"paper_ta{i}" for i in range(4))):
         with Image.open(folder / f"{name}.png") as image:
@@ -132,10 +139,13 @@ def position(data, settings, panels, output):
     save(fig, output, STEMS["position"][0])
 
 
-def ta(data, settings, panels, output):
+def ta(data, settings, panels, output, *, older_only=False):
     boxes = settings["ta_crop_boxes"]
     frames = settings["ta_plot_frames"]
-    for k, (key, stem) in enumerate(zip(("ta_adv", "ta_dsnips"), STEMS["ta"])):
+    stems = STEMS["ta-older" if older_only else "ta"]
+    mask = data["ta_older_mask"] if older_only else slice(None)
+    label = "Older traj" if older_only else "Trajectory"
+    for k, (key, stem) in enumerate(zip(("ta_adv", "ta_dsnips"), stems)):
         fig = plt.figure(figsize=(11.8, 7.0))
         for j, reference in enumerate(("ODA", "YDA")):
             idx, box, frame = 2 * k + j, boxes[2 * k + j], frames[2 * k + j]
@@ -149,18 +159,22 @@ def ta(data, settings, panels, output):
             ])
             (x0, y0), (x1, y1) = fig.transFigure.inverted().transform(display)
             ax = fig.add_axes([x0 + .5, y0, x1 - x0, y1 - y0])
-            values = data[key][:, j]
+            values = data[key][mask, j]
             limits = (-.05, .02) if k == 0 else (-.4, .3)
             grid = np.linspace(*limits, 1000)
             color = ("#a72c51", "#326b9a")[j]
             ax.hist(values, bins=10, density=True, color=color, alpha=.35,
-                    edgecolor="white", label=f"Trajectory → {reference}")
+                    edgecolor="white", label=f"{label} → {reference}")
             ax.plot(grid, gaussian_kde(values)(grid), color="red", lw=1.4)
             ax.axvline(0, color=".3", ls="--", lw=.8)
             ax.set(xlim=limits, xlabel="Value", ylabel="TA-Adv" if k == 0 else "TA-dSNIPS")
             ax.legend(frameon=True, fontsize=8, loc="upper left")
             ax.grid(alpha=.15, ls=":")
         save(fig, output, stem)
+
+
+def ta_older(data, settings, panels, output):
+    ta(data, settings, panels, output, older_only=True)
 
 
 def main():
@@ -178,7 +192,7 @@ def main():
     args.output.mkdir(parents=True, exist_ok=True)
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11, "pdf.fonttype": 42,
                          "axes.spines.top": False, "axes.spines.right": False})
-    renderers = {"tsne": tsne, "position": position, "ta": ta}
+    renderers = {"tsne": tsne, "position": position, "ta": ta, "ta-older": ta_older}
     for name in names:
         renderers[name](data, settings, panels, args.output)
     print(f"Saved {len(expected)} PNG/PDF files to {args.output}")
