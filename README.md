@@ -12,7 +12,7 @@ We trained separate temporal diffusion models on the younger and older training 
 
 Each variable is embedded as a token and processed by a **Transformer that alternates feature attention and temporal attention**. The model uses a hidden width of 32, four attention heads and two blocks, each containing both attention types. Gaussian noise is applied to numerical variables and mask noise to categorical variables, with learnable per-feature noise schedules. The preceding 32 transitions condition the joint generation of the next 128 transitions; successive segments are concatenated to form a complete trajectory. The implementation is provided in [diffusion.py](synthetic_generation/diffusion.py).
 
-![Overview of the temporal diffusion architecture](docs/synthetic_data/figures/00_temporal_diffusion_overview.svg)
+![Overview of the temporal diffusion architecture](docs/synthetic_data/figures/00_temporal_diffusion_overview.png)
 
 The training objective is
 
@@ -122,3 +122,7 @@ The correlation between vehicle Y and head Y is approximately 1.000 in the origi
 python -m pip install -r requirements-figures.txt
 python -m synthetic_generation.figures --output outputs/figures
 ```
+
+## Citation and third-party notices
+
+See [CITATION.md](CITATION.md) for citation information and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for attribution and licenses.

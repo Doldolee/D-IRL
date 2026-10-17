@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from .utils import read_json, sha256
+from .utils import read_json
 from .bc import SquashedGaussianPolicy
 
 ROOT = Path(__file__).resolve().parent
@@ -18,8 +18,39 @@ POLICY_GROUPS = {"senior_auto_p2": "senior", "senior_BC_p0": "senior",
                  "ordinary_warm_p2": "ordinary", "ordinary_bc_gaussian_p2": "ordinary"}
 
 
-def manifest():
-    return read_json(INPUTS / "manifest.json")
+# Per-drive length, behavior-density model, validation flag and random identity.
+# These preserve the accepted 10/2 split per cohort and stochastic TA/recovery draws.
+_TRAJECTORIES = (
+    (8477, 1, True, (2846584443, 2719173962, 4029140874, 577504367)),
+    (8813, 1, False, (1867681820, 2957258742, 1230645887, 566823175)),
+    (8332, 1, False, (3981182034, 3916813220, 1778258131, 2469201168)),
+    (9237, 1, False, (503973952, 3772416723, 549521275, 2797479765)),
+    (8740, 0, False, (3398640017, 3351914680, 2823533387, 2367158373)),
+    (7576, 0, False, (2919356777, 746587698, 1089319163, 1784596847)),
+    (7868, 0, False, (1942573681, 3756854427, 1102131964, 654314833)),
+    (8504, 0, True, (3740428575, 261027323, 1855953331, 708544130)),
+    (9780, 0, False, (3572392051, 3525227177, 3417066688, 519909717)),
+    (8515, 3, False, (3504780146, 928050194, 682431193, 1102531228)),
+    (9224, 2, False, (1396639862, 2338938140, 638757165, 810844290)),
+    (8787, 2, False, (2680317331, 2162656685, 3364404568, 2573571653)),
+    (9729, 4, True, (1705822798, 1529590460, 4009744879, 3507366184)),
+    (10888, 4, False, (2673800409, 3593873855, 1549044727, 1286014667)),
+    (10253, 5, False, (3686930621, 3667370465, 1887556692, 3774539603)),
+    (11387, 5, False, (2361993381, 2760301691, 2309642527, 2722133522)),
+    (11109, 7, False, (4140664110, 78523853, 1367331314, 1152516680)),
+    (10463, 7, False, (3382541089, 2689848976, 2468595594, 3882079266)),
+    (10767, 7, False, (791293448, 2759156529, 3409953322, 1596356990)),
+    (11876, 7, True, (3162163402, 1396583656, 3514201506, 71509635)),
+    (9403, 7, False, (1200911912, 455644563, 849107445, 2600687111)),
+    (10618, 7, False, (206492449, 2830227064, 2038705860, 2086677067)),
+    (11203, 6, False, (4140758176, 3951136507, 1429287114, 1234164565)),
+    (10976, 6, False, (1737942301, 1495784606, 85482761, 1336289806)),
+)
+MODEL_FILES = (
+    tuple(f"policies/{kind}_{group}.pth" for group in GROUPS for kind in ("irl", "bc"))
+    + tuple(f"behavior/behavior{i:02d}.pth" for i in range(8))
+    + tuple(f"diffusion/{group}_s{seed}.pt" for group in GROUPS for seed in (101, 202))
+)
 
 
 def records(group=None, split="all"):
@@ -27,14 +58,19 @@ def records(group=None, split="all"):
         raise ValueError("group must be ordinary or senior")
     if split not in ("all", "train", "valid"):
         raise ValueError("The release provides synthetic train/valid/all; no original test split")
-    return [r for r in manifest()["records"] if (group is None or r["source_group"] == group)
+    available = [dict(id=i, file=f"synthetic24/drive{i:03d}.npz",
+                      source_group="ordinary" if i < 12 else "senior",
+                      split="valid" if valid else "train", transitions=n,
+                      behavior=f"behavior{behavior:02d}",
+                      ta_seed_parts=(42, 0, *identity),
+                      recovery_seed_parts=(42, 1, *identity))
+                 for i, (n, behavior, valid, identity) in enumerate(_TRAJECTORIES)]
+    return [r for r in available if (group is None or r["source_group"] == group)
             and (split == "all" or r["split"] == split)]
 
 
-def read_drive(record, verify=True):
+def read_drive(record):
     path = INPUTS / record["file"]
-    if verify and sha256(path) != record["sha256"]:
-        raise ValueError(f"Synthetic input checksum mismatch: {path.name}")
     with np.load(path, allow_pickle=False) as z:
         data = {k: z[k].copy() for k in z.files}
     n = record["transitions"]
@@ -65,10 +101,11 @@ def load_data(group, split="train"):
 
 
 def model_path(relative):
-    entry = manifest()["models"][relative]
+    if relative not in MODEL_FILES:
+        raise ValueError(f"Unknown bundled model: {relative}")
     path = INPUTS / relative
-    if sha256(path) != entry["sha256"]:
-        raise ValueError(f"Model checksum mismatch: {relative}")
+    if not path.is_file():
+        raise FileNotFoundError(path)
     return path
 
 
@@ -76,11 +113,8 @@ def reference_policy_spec(group, generation="fixed"):
     if group not in GROUPS or generation != "fixed":
         raise ValueError("Choose ordinary/senior and the fixed reference generation")
     relative = f"policies/irl_{group}.pth"
-    entry = manifest()["models"][relative]
-    return dict(path=f"reproduction_inputs/{relative}", sha256=entry["sha256"],
+    return dict(path=f"reproduction_inputs/{relative}", sha256=None,
                 alpha=None, gamma=.99, input_coordinates="fixed_model")
-
-
 
 
 def generator_to_model(states, group):
@@ -101,8 +135,7 @@ def load_policy(key):
     if key.endswith(("auto_p2", "warm_p2")):
         return ReferencePolicy(ROOT, group)
     relative = f"policies/bc_{group}.pth"
-    entry = manifest()["models"][relative]
-    if entry["architecture"] == "squashed_gaussian":
+    if group == "senior":
         model = SquashedGaussianPolicy(51, 3, 256)
         model.load_state_dict(torch.load(model_path(relative), map_location="cpu", weights_only=True))
         return model.eval().requires_grad_(False)

@@ -7,7 +7,6 @@ It does not fit t-SNE, load policies, recompute scores or access research runs.
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 from pathlib import Path
 
@@ -32,12 +31,6 @@ STEMS = {
 
 def load_inputs(folder):
     folder = Path(folder)
-    manifest = json.loads((folder / "manifest.json").read_text())
-    for name, expected in manifest["sha256"].items():
-        with (folder / name).open("rb") as stream:
-            actual = hashlib.file_digest(stream, "sha256").hexdigest()
-        if actual != expected:
-            raise ValueError(f"Plot input checksum mismatch: {name}")
     with np.load(folder / "synthetic_plot_inputs.npz", allow_pickle=False) as archive:
         data = {key: archive[key].copy() for key in archive.files}
     settings = json.loads((folder / "render_settings.json").read_text())
@@ -57,12 +50,10 @@ def load_inputs(folder):
             raise ValueError(f"Expected 24 trajectories by two references: {key}")
     if any(not np.isfinite(value).all() for value in data.values()):
         raise ValueError("Plot arrays must be finite")
-    groups = np.asarray(manifest["trajectory_source_groups"])
-    if (groups.shape != (24,)
-            or not np.isin(groups, ("ordinary", "senior")).all()
-            or np.count_nonzero(groups == "senior") != 12):
+    mask = data["ta_older_mask"]
+    if (mask.shape != (24,) or mask.dtype != np.bool_
+            or np.count_nonzero(mask) != 12):
         raise ValueError("Expected 12 younger-source and 12 older-source trajectories")
-    data["ta_older_mask"] = groups == "senior"
     panels = {}
     for name in ("paper_tsne", "paper_position", *(f"paper_ta{i}" for i in range(4))):
         with Image.open(folder / f"{name}.png") as image:
@@ -73,9 +64,8 @@ def load_inputs(folder):
 def save(fig, output, stem):
     if fig.texts or any(ax.get_title() for ax in fig.axes):
         raise ValueError("Figures must not have titles or footer captions")
-    for extension in ("png", "pdf"):
-        fig.savefig(output / f"{stem}.{extension}", dpi=230,
-                    bbox_inches="tight", facecolor="white")
+    fig.savefig(output / f"{stem}.png", dpi=230,
+                bbox_inches="tight", facecolor="white")
     plt.close(fig)
 
 
@@ -184,18 +174,17 @@ def main():
     parser.add_argument("--output", type=Path, default=Path("outputs/figures"))
     args = parser.parse_args()
     names = tuple(STEMS) if args.figure == "all" else (args.figure,)
-    expected = [args.output / f"{stem}.{ext}" for name in names
-                for stem in STEMS[name] for ext in ("png", "pdf")]
+    expected = [args.output / f"{stem}.png" for name in names for stem in STEMS[name]]
     if any(path.exists() for path in expected):
         parser.error("Figure files already exist; choose a fresh --output directory")
     data, settings, panels = load_inputs(args.inputs)
     args.output.mkdir(parents=True, exist_ok=True)
-    plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11, "pdf.fonttype": 42,
+    plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11,
                          "axes.spines.top": False, "axes.spines.right": False})
     renderers = {"tsne": tsne, "position": position, "ta": ta, "ta-older": ta_older}
     for name in names:
         renderers[name](data, settings, panels, args.output)
-    print(f"Saved {len(expected)} PNG/PDF files to {args.output}")
+    print(f"Saved {len(expected)} PNG files to {args.output}")
 
 
 if __name__ == "__main__":

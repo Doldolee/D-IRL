@@ -1,32 +1,13 @@
 # Reproduction inputs
 
-`manifest.json` identifies24 synthetic trajectories, their group, a synthetic
-20train/4validation demonstration split, random-draw seeds, behavior-model
-assignment and file hashes. No original hospital trajectory arrays or participant
-identifiers are included.
+The 24 synthetic trajectories contain 232,525 transitions: 12 younger-group and 12 older-group drives. No original hospital records are included.
 
-The train/validation labels support optional new-model training demonstrations
-only (10/2 trajectories per cohort). Frozen TA and recovered-reward evaluation
-use all24; reported OPE uses all12 corresponding-cohort drives per policy.
-These labels do not describe the training data of the bundled fixed models.
-The original-data-trained ODA/YDA IRL and comparison BC weights are provided
-separately in `policies/`.
+- `synthetic24/`: states, next states, actions, DQI rewards, scenario labels and terminal flags. Model-frame and generator-frame states are supplied separately.
+- `policies/`: the original-data-trained fixed ODA/YDA IRL and comparison BC models. Both IRL models use seed 2 and 20,000 steps.
+- `behavior/`: eight frozen synthetic behavior-density models used by TA-dSNIPS.
+- `diffusion/`: younger/older temporal diffusion models for seeds 101 and 202.
+- `transforms.json`: state-coordinate transforms used by the fixed models.
+- `expected_ta.json`: saved reference scores for checking new TA evaluations.
+- `ope_results.json`: the reported OPE table values.
 
-- `synthetic24/driveNNN.npz`: fixed-model states and next states, the corresponding
-  generator-frame states, three actions, DQI component/total rewards, scenario
-  labels and terminal flags. State frames are explicitly separate arrays.
-- `policies/irl_*.pth`: the fixed ODA/YDA policy and critic networks, with their
-  native entropy temperature and seed2/20k configuration.
-- `policies/bc_*.pth`: the two BC policies used in the reported OPE comparison.
-- `behavior/`: eight frozen synthetic behavior-density networks. Their inputs
-  use the generator-frame states, as specified in each checkpoint.
-- `diffusion/`: younger/older temporal diffusion inference checkpoints for
-  seeds101 and202. Original training-row indices and run manifests are excluded.
-- `transforms.json`: numerical state-coordinate transforms and feature names.
-- `expected_ta.json`: saved comparison scores; not used as inference inputs.
-- `ope_results.json`: the60 reported policy/estimator/DQI result rows.
-
-Training commands fit new illustrative models on synthetic data. They do not
-retrain the original hospital-data policies. New diffusion samples need not
-match the selected24 release trajectories. The exact full synthetic dataset is
-provided directly for repeatable downstream evaluation.
+`data.py` retains the cohort assignments, random seeds and optional synthetic training split (10 training and 2 validation drives per cohort). New training examples fit new synthetic-data models; the original-data-trained policies are supplied separately. New diffusion samples may differ from the released trajectories.

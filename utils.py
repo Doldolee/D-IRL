@@ -365,27 +365,23 @@ def log_kernel_density_adaptive(
 
 
 def verify_inputs():
-    """Check the explicit public file inventory and every bundled trajectory."""
+    """Validate bundled trajectories, coordinate conversion and frozen models."""
     from . import data
-    root = Path(__file__).resolve().parent
-    inventory = read_json(root / "RELEASE_MANIFEST.json")
-    failed = [name for name, expected in inventory["files"].items()
-              if not (root / name).is_file() or sha256(root / name) != expected]
-    if failed:
-        raise ValueError(f"Release file verification failed: {failed}")
-    ignored = {"outputs", "__pycache__", ".pytest_cache", ".git", ".venv"}
-    actual = {str(p.relative_to(root)) for p in root.rglob("*") if p.is_file()
-              and not ignored.intersection(p.relative_to(root).parts)
-              and not p.name.startswith("._") and p.name != ".DS_Store"}
-    extra = actual - set(inventory["files"]) - {"RELEASE_MANIFEST.json"}
-    if extra:
-        raise ValueError(f"Files not listed in the public release inventory: {sorted(extra)}")
     transitions = 0
-    for record in data.records():
+    selected = data.records()
+    for record in selected:
         drive = data.read_drive(record)
-        np.testing.assert_array_equal(data.generator_to_model(drive["generator_states"], record["source_group"]), drive["states"])
+        np.testing.assert_array_equal(
+            data.generator_to_model(drive["generator_states"], record["source_group"]),
+            drive["states"],
+        )
         transitions += len(drive["states"])
-    return dict(passed=True, files=len(inventory["files"]), synthetic_trajectories=24,
-                transitions=transitions, models=len(data.manifest()["models"]),
+    for relative in data.MODEL_FILES:
+        data.model_path(relative)
+    for key in data.POLICY_GROUPS:
+        data.load_policy(key)
+    for alias in {record["behavior"] for record in selected}:
+        data.behavior_policy(alias)
+    return dict(passed=True, synthetic_trajectories=len(selected),
+                transitions=transitions, models=len(data.MODEL_FILES),
                 original_data_required=False)
-

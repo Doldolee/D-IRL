@@ -18,8 +18,7 @@ BLACK = "#161616"
 def render(output):
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
-    plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 12,
-                         "svg.fonttype": "none", "pdf.fonttype": 42})
+    plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 12})
     fig, ax = plt.subplots(figsize=(15, 11.4))
     fig.subplots_adjust(left=.01, right=.99, bottom=.015, top=.99)
     ax.set(xlim=(0, 15), ylim=(0, 11.4))
@@ -167,9 +166,8 @@ def render(output):
         box = label.get_window_extent(fig.canvas.get_renderer())
         if not (bounds.contains(box.x0, box.y0) and bounds.contains(box.x1, box.y1)):
             raise ValueError(f"Label outside figure: {label.get_text()}")
-    for ext in ("svg", "png"):
-        fig.savefig(output / f"00_temporal_diffusion_overview.{ext}",
-                    dpi=240, facecolor="white", bbox_inches="tight", pad_inches=.08)
+    fig.savefig(output / "00_temporal_diffusion_overview.png",
+                dpi=240, facecolor="white", bbox_inches="tight", pad_inches=.08)
     plt.close(fig)
 
 
