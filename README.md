@@ -2,7 +2,7 @@
 
 The original driving data were collected at a hospital and cannot be shared publicly because of privacy concerns. We therefore use **24 synthetic driving trajectories generated using diffusion** to support reproduction of the code and analysis workflow. The dataset comprises 12 younger-group and 12 older-group trajectories, with **232,525 transitions** in total.
 
-The synthetic data demonstrate the preprocessing, training, evaluation and figure-generation workflow. They show trends similar to the original results in road geometry, TA distributions and recovered-reward differences in some scenario regions. However, their statistical properties are not identical to those of the original data.
+The synthetic data demonstrate the preprocessing, training, evaluation and figure-generation workflow. They show trends similar to the original results in road geometry, TA distributions and recovered-reward differences in some scenario regions.
 
 The synthetic dataset is split into 10 training and 2 validation trajectories per cohort only for optional training examples. The fixed ODA/YDA IRL policies and comparison BC policies trained on the original data are provided separately in `reproduction_inputs/policies/`.
 
