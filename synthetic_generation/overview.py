@@ -1,132 +1,183 @@
-"""Draw the temporal diffusion architecture used in the release README."""
-from __future__ import annotations
-
-import argparse
+"""Draw the trajectory-based temporal diffusion overview used in the README."""
 from pathlib import Path
+import argparse
 
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
+from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Rectangle
+from matplotlib.collections import LineCollection
+import numpy as np
+
+
+GOLD = "#cba32c"
+GRAY = "#d6d7d9"
+BLACK = "#161616"
 
 
 def render(output):
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 12,
-                         "svg.fonttype": "path", "pdf.fonttype": 42})
-    fig, ax = plt.subplots(figsize=(17, 8.6))
-    fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
-    ax.set(xlim=(0, 17), ylim=(0, 8.6))
+                         "svg.fonttype": "none", "pdf.fonttype": 42})
+    fig, ax = plt.subplots(figsize=(15, 11.4))
+    fig.subplots_adjust(left=.01, right=.99, bottom=.015, top=.99)
+    ax.set(xlim=(0, 15), ylim=(0, 11.4))
     ax.axis("off")
-    dark, gray = "#243345", "#667383"
-    blue, wine, teal = "#426c91", "#8f3557", "#3c7669"
 
-    def panel(x, y, w, h, title, body, color, fill):
-        ax.add_patch(FancyBboxPatch((x, y), w, h,
-                     boxstyle="round,pad=0.02,rounding_size=.12",
-                     linewidth=1.25, edgecolor=color, facecolor=fill))
-        ax.text(x + w / 2, y + h * .73, title, ha="center", va="center",
-                fontsize=13, fontweight="bold", color=dark)
-        ax.text(x + w / 2, y + h * .34, body, ha="center", va="center",
-                fontsize=11.5, linespacing=1.5, color=gray)
+    def text(x, y, label, size=13, ha="center", **kw):
+        return ax.text(x, y, label, fontsize=size, ha=ha, va="center",
+                       color=BLACK, linespacing=1.25, **kw)
 
-    def arrow(start, end, dashed=False):
+    def arrow(start, end, lw=1.6):
         ax.add_patch(FancyArrowPatch(start, end, arrowstyle="-|>",
-                     mutation_scale=14, linewidth=1.25, color=gray,
-                     linestyle=(0, (4, 3)) if dashed else "-",
-                     shrinkA=4, shrinkB=4))
+                     mutation_scale=16, linewidth=lw, color=BLACK,
+                     shrinkA=2, shrinkB=2))
 
-    ax.text(.5, 8.22, "COHORT-SPECIFIC TRAINING", fontsize=11,
-            color=gray, fontweight="bold", va="center")
-    panel(.5, 4.95, 2.4, 1.7, "Driving windows",
-          "Younger / older\ntrained separately", blue, "#f1f5f9")
-    panel(3.25, 4.95, 2.7, 1.7, "Mixed-type corruption",
-          "Numerical: Gaussian noise\nCategorical: mask noise", blue, "#f1f5f9")
-    panel(6.3, 4.95, 2.1, 1.7, "Feature tokens",
-          "Numerical + categorical\nembeddings", blue, "#f1f5f9")
-    panel(12.75, 4.95, 3.65, 1.7, "Reconstruction heads",
-          "EDM numerical values\nCategorical logits", teal, "#eff6f4")
+    def connector(points, lw=1.35):
+        points = np.asarray(points)
+        ax.plot(points[:-1, 0], points[:-1, 1], color=BLACK, lw=lw)
+        arrow(points[-2], points[-1], lw)
 
-    x, y, w, h = 8.75, 4.5, 3.65, 2.6
-    ax.add_patch(FancyBboxPatch((x, y), w, h,
-                 boxstyle="round,pad=0.02,rounding_size=.12",
-                 linewidth=1.5, edgecolor=wine, facecolor="#fbf3f6"))
-    ax.text(x + w / 2, 6.73, "Transformer block × 2", ha="center", va="center",
-            fontsize=13, fontweight="bold", color=dark)
-    for by, label in ((5.8, "Feature attention"), (5.12, "Temporal attention")):
-        ax.add_patch(FancyBboxPatch((9, by), 3.15, .48,
-                     boxstyle="round,pad=.02,rounding_size=.07",
-                     linewidth=.9, edgecolor=wine, facecolor="white"))
-        ax.text(10.575, by + .24, label, ha="center", va="center",
-                fontsize=12, color=wine)
-    arrow((10.575, 5.79), (10.575, 5.61))
-    ax.text(10.575, 4.76, "Hidden width 32 · 4 attention heads",
-            ha="center", va="center", fontsize=10.5, color=gray)
+    def slabs(x, y, w, h, label, *, vertical=False, size=15):
+        for offset in (.12, 0):
+            ax.add_patch(FancyBboxPatch((x + offset, y + offset), w, h,
+                         boxstyle="round,pad=.03,rounding_size=.19",
+                         facecolor=GRAY, edgecolor=BLACK, linewidth=1.6))
+        text(x + w / 2, y + h / 2, label, size,
+             rotation=90 if vertical else 0)
 
-    for a, b in ((2.9, 3.25), (5.95, 6.3), (8.4, 8.75), (12.4, 12.75)):
-        arrow((a, 5.8), (b, 5.8))
+    def trajectory(x, y, w=1.9, h=1.45, *, mode="clean", full=False, seed=0):
+        """Draw a schematic XY projection; state/action/DQI are not inferred."""
+        rng = np.random.default_rng(seed)
+        if full:
+            anchors = np.array([[.03, .08], [.21, .10], [.24, .16], [.23, .69],
+                                [.30, .76], [.68, .96], [.76, .87], [.76, .59],
+                                [.96, .12], [1.0, .10]])
+        else:
+            anchors = np.array([[.05, .08], [.07, .42], [.11, .55], [.28, .66],
+                                [.58, .86], [.76, .94], [.90, .80], [.93, .56]])
+        distances = np.r_[0, np.cumsum(np.linalg.norm(np.diff(anchors, axis=0), axis=1))]
+        u = np.linspace(0, distances[-1], 56)
+        p = np.column_stack([np.interp(u, distances, anchors[:, j]) for j in (0, 1)])
+        if mode == "noise":
+            p = np.column_stack([np.linspace(.05, .95, 36), rng.uniform(.10, .92, 36)])
+        elif mode == "corrupted":
+            p += rng.normal(0, .055, p.shape)
+            p = p.clip(.02, .98)
+        p = p * [w, h] + [x, y]
+        color = GOLD if mode == "generated" else "#4e5257"
+        if mode == "generated" and full:
+            edges = np.stack([p[:-1], p[1:]], axis=1)
+            colors = np.array(["#b48c21", "#d0ad43", "#e0c779"])
+            group = np.minimum(np.arange(len(edges)) * 3 // len(edges), 2)
+            ax.add_collection(LineCollection(edges, colors=colors[group], linewidths=3.0,
+                                             capstyle="round", joinstyle="round"))
+        else:
+            ax.plot(p[:, 0], p[:, 1], color=color, lw=2.5 if mode != "noise" else 1.4,
+                    solid_capstyle="round", alpha=.70 if mode == "noise" else 1.)
+        ax.scatter(p[::3, 0], p[::3, 1], s=15, facecolor="white", edgecolor=color,
+                   linewidth=.8, zorder=4)
+        if mode in ("corrupted", "noise"):
+            masked = np.arange(4, len(p), 9)
+            ax.scatter(p[masked, 0], p[masked, 1], s=22, marker="s", c=BLACK, zorder=5)
+        elif mode == "generated":
+            # Small movement arrows identify a path rather than a scalar signal.
+            at = len(p) // 2
+            ax.add_patch(FancyArrowPatch(p[at], p[at + 3], arrowstyle="-|>",
+                         mutation_scale=10, color=color, lw=1.25, zorder=6))
 
-    for bx, bw, text in (
-        (3.25, 2.7, "Learned per-feature\nnoise schedules"),
-        (6.3, 6.1, "Clean context (32 steps) · diffusion time\nPhase / progress conditions + position encoding"),
-    ):
-        ax.add_patch(FancyBboxPatch((bx, 7.46), bw, .6,
-                     boxstyle="round,pad=.03,rounding_size=.08",
-                     linewidth=.8, edgecolor="#b9c3ce", facecolor="#f7f9fb"))
-        ax.text(bx + bw / 2, 7.76, text, ha="center", va="center",
-                fontsize=10.7, linespacing=1.35, color=dark)
-    arrow((4.6, 7.43), (4.6, 6.65))
-    arrow((10.575, 7.43), (10.575, 7.1))
+    text(.18, 10.98, "a", 29, ha="left", fontweight="bold")
+    text(.80, 10.98, "Temporal diffusion training", 20, ha="left")
 
-    ax.text(8.45, 4.08, "TRAINING OBJECTIVE", fontsize=11,
-            color=gray, fontweight="bold", ha="center", va="center")
-    ax.add_patch(FancyBboxPatch((.5, 2.93), 15.9, .82,
-                 boxstyle="round,pad=.02,rounding_size=.1",
-                 linewidth=.8, edgecolor="#d0d7df", facecolor="#f8f9fb"))
-    ax.text(8.45, 3.34,
-            r"$\mathcal{L}=\mathcal{L}_{\mathrm{num}}+\mathcal{L}_{\mathrm{cat}}"
-            r"+0.1\mathcal{L}_{\Delta}+\mathcal{L}_{\mathrm{boundary}}"
-            r"+0.1\mathcal{L}_{\mathrm{progress}}$",
-            ha="center", va="center", fontsize=19, color=dark)
-    arrow((1.7, 4.95), (1.7, 3.75), dashed=True)
-    arrow((14.575, 4.95), (14.575, 3.75), dashed=True)
+    trajectory(.64, 7.52, seed=3)
+    text(1.63, 9.50, "Trajectory segment", 16)
+    text(1.63, 6.99, "State · action · DQI", 12)
+    trajectory(3.53, 7.52, mode="corrupted", seed=12)
+    text(4.49, 9.50, "Noisy segment", 16)
+    text(4.49, 6.99, "Gaussian noise\n+ categorical masks", 12)
+    arrow((2.72, 8.19), (3.32, 8.19))
 
-    ax.text(.5, 2.4, "SEGMENT-BY-SEGMENT GENERATION", fontsize=11,
-            color=gray, fontweight="bold", va="center")
-    panel(.5, .45, 2.4, 1.25, "Noise + plan",
-          "Gaussian / mask tokens", blue, "#f1f5f9")
-    panel(3.45, .45, 4.25, 1.25, "Iterative denoising",
-          "Same Transformer · fixed clean context", wine, "#fbf3f6")
-    panel(8.2, .45, 3, 1.25, "Next 128 transitions",
-          "State · action · DQI", teal, "#eff6f4")
-    panel(12.5, .45, 3.9, 1.25, "Full synthetic trajectory",
-          "Append segments in temporal order", teal, "#eff6f4")
-    for a, b in ((2.9, 3.45), (7.7, 8.2), (11.2, 12.5)):
-        arrow((a, 1.075), (b, 1.075))
-    ax.plot([9.7, 9.7, 5.575], [1.72, 2.08, 2.08], lw=1.1, color=gray)
-    arrow((5.575, 2.08), (5.575, 1.7))
-    ax.text(7.7, 2.34, "Last 32 transitions become the next context",
-            ha="center", va="center", fontsize=10.5, color=gray,
-            bbox=dict(facecolor="white", edgecolor="none", pad=2))
+    text(4.49, 10.47, "Learnable per-feature\nnoise schedules", 12)
+    arrow((4.49, 10.10), (4.49, 9.80))
+
+    for i in range(6):
+        ax.add_patch(Rectangle((6.14, 7.25 + i * .25), .27, .17,
+                              edgecolor=BLACK, facecolor="#a6a8ab", lw=.65))
+    text(6.28, 9.50, "Feature\ntokens", 13)
+    arrow((5.62, 8.19), (6.02, 8.19))
+    arrow((6.54, 8.19), (7.00, 8.19))
+    slabs(7.10, 6.90, 1.42, 2.40, "Temporal diffusion\nTransformer", vertical=True)
+    text(7.89, 6.38, "2 axial blocks\nFeature ↔ temporal attention", 12)
+    text(7.89, 5.85, "Width 32 · 4 heads", 11.5)
+    text(7.89, 10.47, "Clean context: preceding 32 steps\nTime · phase · progress", 12)
+    arrow((7.89, 10.10), (7.89, 9.52))
+
+    slabs(9.35, 7.62, 1.17, 1.10, "EDM\n+ logits", size=13)
+    text(9.99, 9.50, "Reconstruction\nheads", 13)
+    arrow((8.79, 8.19), (9.23, 8.19))
+    arrow((10.77, 8.19), (11.36, 8.19))
+    trajectory(11.48, 7.52, mode="generated", seed=6)
+    text(12.43, 9.50, "Reconstructed\nsegment", 16)
+    text(12.43, 6.99, "State · action · DQI", 12)
+
+    # Explicit solid paths replace the earlier unexplained dotted loss arrows.
+    connector([(1.63, 6.64), (1.63, 5.32), (5.10, 5.32)])
+    text(3.30, 5.61, "Clean target", 12)
+    connector([(12.43, 6.64), (12.43, 5.32), (9.74, 5.32)])
+    text(11.12, 5.61, "Reconstruction", 12)
+    ax.add_patch(FancyBboxPatch((5.20, 5.03), 4.43, .58,
+                 boxstyle="round,pad=.02,rounding_size=.08",
+                 edgecolor=BLACK, facecolor="#fafafa", lw=1.2))
+    text(7.415, 5.32, "Compare with clean segment", 13)
+    arrow((7.415, 5.00), (7.415, 4.57), lw=1.35)
+    text(7.42, 4.26,
+         r"$\mathcal{L}=\mathcal{L}_{\mathrm{num}}+\mathcal{L}_{\mathrm{cat}}"
+         r"+0.1\mathcal{L}_{\Delta}+\mathcal{L}_{\mathrm{boundary}}"
+         r"+0.1\mathcal{L}_{\mathrm{progress}}$", 18)
+    ax.plot([.65, 14.30], [3.80, 3.80], color="#b6b6b6", lw=.75)
+
+    text(.18, 3.37, "b", 29, ha="left", fontweight="bold")
+    text(.80, 3.37, "Segment-by-segment trajectory generation", 19, ha="left")
+    trajectory(.80, .66, w=1.83, h=1.24, mode="noise", seed=16)
+    text(1.73, 2.31, "Noise + plan", 15)
+    text(1.73, .30, "Gaussian / mask inputs", 11.5)
+    arrow((2.85, 1.25), (3.79, 1.25))
+    slabs(3.98, .72, 2.55, 1.12, "Iterative\ndenoising", size=16)
+    text(5.26, .30, "EMA inference weights", 11.5)
+    arrow((6.83, 1.25), (7.63, 1.25))
+    trajectory(7.82, .66, w=1.83, h=1.24, mode="generated")
+    text(8.74, 2.31, "Next 128 steps", 15)
+    text(8.74, .30, "Generated trajectory segment", 11.5)
+    connector([(9.62, 1.90), (9.94, 2.07), (9.94, 2.77),
+               (5.29, 2.77), (5.29, 2.08)])
+    text(7.22, 3.00, "Last 32 steps become the next context", 12,
+         bbox={"facecolor": "white", "edgecolor": "none", "pad": 1})
+    arrow((9.87, 1.25), (10.57, 1.25))
+    trajectory(10.78, .64, w=3.15, h=1.30, mode="generated", full=True)
+    text(12.35, 2.31, "Full synthetic trajectory", 15)
+    text(12.35, .30, "Join segments in temporal order", 11.5)
+
+    ax.text(14.58, .015, "AI generated image", fontsize=9, ha="right",
+            va="bottom", color="#666666")
+
     fig.canvas.draw()
     bounds = fig.get_window_extent()
     for label in ax.texts:
         box = label.get_window_extent(fig.canvas.get_renderer())
         if not (bounds.contains(box.x0, box.y0) and bounds.contains(box.x1, box.y1)):
-            raise ValueError(f"Architecture label outside figure: {label.get_text()}")
-    for extension in ("svg", "png"):
-        fig.savefig(output / f"00_temporal_diffusion_overview.{extension}",
-                    dpi=180, facecolor="white", bbox_inches="tight", pad_inches=.1)
+            raise ValueError(f"Label outside figure: {label.get_text()}")
+    for ext in ("svg", "png"):
+        fig.savefig(output / f"00_temporal_diffusion_overview.{ext}",
+                    dpi=240, facecolor="white", bbox_inches="tight", pad_inches=.08)
     plt.close(fig)
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path,
                         default=Path(__file__).resolve().parents[1] / "docs/synthetic_data/figures")
-    args = parser.parse_args()
-    render(args.output)
+    render(parser.parse_args(argv).output)
 
 
 if __name__ == "__main__":

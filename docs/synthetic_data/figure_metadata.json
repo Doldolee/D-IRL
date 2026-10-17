@@ -219,14 +219,17 @@
     "figure": "figures/00_temporal_diffusion_overview.svg",
     "png_preview": "figures/00_temporal_diffusion_overview.png",
     "source": "synthetic_generation/overview.py",
-    "source_sha256": "78ebad7743664cbb6effbba53d710cfa2945de81a5c6aa1cb29a3c31c3548b95",
-    "description": "Actual mixed-type temporal denoiser, its conditioning and objective, and segment-by-segment sampling; schematic only, no data processing",
+    "source_sha256": "182f955a935d74c19ab54cd2e24f57be26b6451cbf767f7670d80367a799be71",
+    "description": "Temporal diffusion training and connected-segment generation shown as schematic2D trajectories; solid labelled clean-target/reconstruction loss paths; no data processing",
     "basis": [
       "synthetic_generation/diffusion.py",
       "synthetic_generation/diffusion_train.py",
       "synthetic_generation/trajectory.py"
     ],
-    "new_results": false
+    "new_results": false,
+    "annotation": "AI generated image",
+    "annotation_position": "lower right",
+    "data_representation": "2D trajectory segments and joined full route; no volumetric data cubes"
   },
   "readme_execution_section": "Commands only; implementation/input/metadata/checksum link sentence removed at user request"
 }

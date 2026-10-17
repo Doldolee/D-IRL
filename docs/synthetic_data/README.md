@@ -99,7 +99,7 @@ TA-dSNIPS.
 
 ## 6. Limitations of the synthetic data
 
-Although the synthetic data show similar road geometry and trends in some metrics, they do not fully reproduce temporal state changes, relationships between variables or the spatial extent of scenario regions. The following diagnostics compare the selected 24 original and 24 synthetic trajectories.
+Although the synthetic data show similar road geometry and trends in some metrics, they do not fully reproduce temporal state changes, relationships between variables or the spatial extent of scenario regions. The following diagnostics compare the original and synthetic trajectories.
 
 ![Recovered-reward differences, pedal use and scenario-region extent](figures/08_limitations_diagnostics.png)
 
