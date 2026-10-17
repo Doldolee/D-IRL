@@ -12,3 +12,12 @@ pytest.ini
 outputs/
 .cache/
 .ipynb_checkpoints/
+
+# Local inventories and verification reports
+*manifest*.json
+*MANIFEST*.json
+*checksums*.json
+*hashes*.json
+verification*.json
+figure_metadata.json
+expected_ta.json
