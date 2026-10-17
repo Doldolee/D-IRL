@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+tests/
+pytest.ini
+.venv/
+.DS_Store
+._*
+*.pem
+*.key
+*.csv
+outputs/
+.cache/
+.ipynb_checkpoints/

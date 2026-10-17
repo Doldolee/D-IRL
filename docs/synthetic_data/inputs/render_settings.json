@@ -1,0 +1,94 @@
+{
+  "color_cap": 80.23874063110526,
+  "highlight_thresholds": [
+    108.2883374357223,
+    162.77174545895903
+  ],
+  "scenario_labels": [
+    {
+      "scenario": 1,
+      "label_xy": [
+        -0.45,
+        -1.28
+      ],
+      "label_align": "left"
+    },
+    {
+      "scenario": 2,
+      "label_xy": [
+        -1.5,
+        0.98
+      ],
+      "label_align": "left"
+    },
+    {
+      "scenario": 3,
+      "label_xy": [
+        0.58,
+        0.48
+      ],
+      "label_align": "right"
+    },
+    {
+      "scenario": 4,
+      "label_xy": [
+        1.05,
+        -0.75
+      ],
+      "label_align": "right"
+    }
+  ],
+  "ta_crop_boxes": [
+    [
+      8,
+      105,
+      608,
+      447
+    ],
+    [
+      600,
+      105,
+      1198,
+      447
+    ],
+    [
+      1196,
+      105,
+      1790,
+      447
+    ],
+    [
+      1795,
+      105,
+      2397,
+      447
+    ]
+  ],
+  "ta_plot_frames": [
+    [
+      83,
+      119,
+      583,
+      396
+    ],
+    [
+      672,
+      119,
+      1173,
+      396
+    ],
+    [
+      1270,
+      119,
+      1771,
+      396
+    ],
+    [
+      1860,
+      119,
+      2361,
+      396
+    ]
+  ],
+  "scenario_annotation": "Paper-style label callouts point to actual synthetic rows nearest within-scenario coordinate medians. They do not assert the original paper region boundaries or an enclosure of all synthetic scenario rows."
+}

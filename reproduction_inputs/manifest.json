@@ -1,0 +1,702 @@
+{
+  "synthetic": true,
+  "n_trajectories": 24,
+  "n_transitions": 232525,
+  "state_frame": "fixed_model",
+  "generator_state_frame": "generator_train_standardized",
+  "split_scope": "Synthetic trajectory-level demonstration split;20train/4validation. No original test data are distributed.",
+  "records": [
+    {
+      "id": 0,
+      "file": "synthetic24/drive000.npz",
+      "source_group": "ordinary",
+      "split": "valid",
+      "transitions": 8477,
+      "behavior": "behavior01",
+      "ta_seed_parts": [
+        42,
+        0,
+        2846584443,
+        2719173962,
+        4029140874,
+        577504367
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        2846584443,
+        2719173962,
+        4029140874,
+        577504367
+      ],
+      "sha256": "a3a61e4aa823b2a63f468910749da8ef23085a127e8ee4090b0e74abf11e5a7b"
+    },
+    {
+      "id": 1,
+      "file": "synthetic24/drive001.npz",
+      "source_group": "ordinary",
+      "split": "train",
+      "transitions": 8813,
+      "behavior": "behavior01",
+      "ta_seed_parts": [
+        42,
+        0,
+        1867681820,
+        2957258742,
+        1230645887,
+        566823175
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        1867681820,
+        2957258742,
+        1230645887,
+        566823175
+      ],
+      "sha256": "78d3a3a3833d26b6df8fadebd36f62a23346792ad1991365098967ab49620ac6"
+    },
+    {
+      "id": 2,
+      "file": "synthetic24/drive002.npz",
+      "source_group": "ordinary",
+      "split": "train",
+      "transitions": 8332,
+      "behavior": "behavior01",
+      "ta_seed_parts": [
+        42,
+        0,
+        3981182034,
+        3916813220,
+        1778258131,
+        2469201168
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        3981182034,
+        3916813220,
+        1778258131,
+        2469201168
+      ],
+      "sha256": "f7ccd6d8aa3b6ac8795e2d41df9e6ea6284a64e4ebcac5c4f8b70ed0cafe5725"
+    },
+    {
+      "id": 3,
+      "file": "synthetic24/drive003.npz",
+      "source_group": "ordinary",
+      "split": "train",
+      "transitions": 9237,
+      "behavior": "behavior01",
+      "ta_seed_parts": [
+        42,
+        0,
+        503973952,
+        3772416723,
+        549521275,
+        2797479765
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        503973952,
+        3772416723,
+        549521275,
+        2797479765
+      ],
+      "sha256": "5354fc283f6beea766edcccf462e34574c58b0de4bfdb44b184a706bfe579061"
+    },
+    {
+      "id": 4,
+      "file": "synthetic24/drive004.npz",
+      "source_group": "ordinary",
+      "split": "train",
+      "transitions": 8740,
+      "behavior": "behavior00",
+      "ta_seed_parts": [
+        42,
+        0,
+        3398640017,
+        3351914680,
+        2823533387,
+        2367158373
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        3398640017,
+        3351914680,
+        2823533387,
+        2367158373
+      ],
+      "sha256": "57974b96e84a26954547ad3a3eba6649740d829820ea0190ce10734e1cf355d6"
+    },
+    {
+      "id": 5,
+      "file": "synthetic24/drive005.npz",
+      "source_group": "ordinary",
+      "split": "train",
+      "transitions": 7576,
+      "behavior": "behavior00",
+      "ta_seed_parts": [
+        42,
+        0,
+        2919356777,
+        746587698,
+        1089319163,
+        1784596847
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        2919356777,
+        746587698,
+        1089319163,
+        1784596847
+      ],
+      "sha256": "939947828776fdd2f077a495e6efacd2f216a5f3f2fdc9d30fc84f4166517ec9"
+    },
+    {
+      "id": 6,
+      "file": "synthetic24/drive006.npz",
+      "source_group": "ordinary",
+      "split": "train",
+      "transitions": 7868,
+      "behavior": "behavior00",
+      "ta_seed_parts": [
+        42,
+        0,
+        1942573681,
+        3756854427,
+        1102131964,
+        654314833
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        1942573681,
+        3756854427,
+        1102131964,
+        654314833
+      ],
+      "sha256": "0869bbf72e44c91c7f114f012fb36135b44144a7a92f046408c3a9b9c4ec61cd"
+    },
+    {
+      "id": 7,
+      "file": "synthetic24/drive007.npz",
+      "source_group": "ordinary",
+      "split": "valid",
+      "transitions": 8504,
+      "behavior": "behavior00",
+      "ta_seed_parts": [
+        42,
+        0,
+        3740428575,
+        261027323,
+        1855953331,
+        708544130
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        3740428575,
+        261027323,
+        1855953331,
+        708544130
+      ],
+      "sha256": "63760528cc4dc4689668d3aeaa54177126555889ed1e58776019cd074bc1bb1a"
+    },
+    {
+      "id": 8,
+      "file": "synthetic24/drive008.npz",
+      "source_group": "ordinary",
+      "split": "train",
+      "transitions": 9780,
+      "behavior": "behavior00",
+      "ta_seed_parts": [
+        42,
+        0,
+        3572392051,
+        3525227177,
+        3417066688,
+        519909717
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        3572392051,
+        3525227177,
+        3417066688,
+        519909717
+      ],
+      "sha256": "cbea275d1e600b06b29d85e2f19f6b91a82238bf6c9670857f1f3893fd1bfec2"
+    },
+    {
+      "id": 9,
+      "file": "synthetic24/drive009.npz",
+      "source_group": "ordinary",
+      "split": "train",
+      "transitions": 8515,
+      "behavior": "behavior03",
+      "ta_seed_parts": [
+        42,
+        0,
+        3504780146,
+        928050194,
+        682431193,
+        1102531228
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        3504780146,
+        928050194,
+        682431193,
+        1102531228
+      ],
+      "sha256": "f146a98c8f9bac16ba81f3bde12f02757b97fd3df22e0ce25bc90daefe2c6f15"
+    },
+    {
+      "id": 10,
+      "file": "synthetic24/drive010.npz",
+      "source_group": "ordinary",
+      "split": "train",
+      "transitions": 9224,
+      "behavior": "behavior02",
+      "ta_seed_parts": [
+        42,
+        0,
+        1396639862,
+        2338938140,
+        638757165,
+        810844290
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        1396639862,
+        2338938140,
+        638757165,
+        810844290
+      ],
+      "sha256": "0c15c9de6a7344669dcaa8952750ab90f9bb6af42ab07fcfe0972391e0e3a236"
+    },
+    {
+      "id": 11,
+      "file": "synthetic24/drive011.npz",
+      "source_group": "ordinary",
+      "split": "train",
+      "transitions": 8787,
+      "behavior": "behavior02",
+      "ta_seed_parts": [
+        42,
+        0,
+        2680317331,
+        2162656685,
+        3364404568,
+        2573571653
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        2680317331,
+        2162656685,
+        3364404568,
+        2573571653
+      ],
+      "sha256": "e9046d5ed844118445b3f74bb8ba7cc793ee6c89735519d3d56502ee89f9d79a"
+    },
+    {
+      "id": 12,
+      "file": "synthetic24/drive012.npz",
+      "source_group": "senior",
+      "split": "valid",
+      "transitions": 9729,
+      "behavior": "behavior04",
+      "ta_seed_parts": [
+        42,
+        0,
+        1705822798,
+        1529590460,
+        4009744879,
+        3507366184
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        1705822798,
+        1529590460,
+        4009744879,
+        3507366184
+      ],
+      "sha256": "206e992d78eec22186c9c2d702aa537dcce3ec1cf69e6c91215aba342be8ac1c"
+    },
+    {
+      "id": 13,
+      "file": "synthetic24/drive013.npz",
+      "source_group": "senior",
+      "split": "train",
+      "transitions": 10888,
+      "behavior": "behavior04",
+      "ta_seed_parts": [
+        42,
+        0,
+        2673800409,
+        3593873855,
+        1549044727,
+        1286014667
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        2673800409,
+        3593873855,
+        1549044727,
+        1286014667
+      ],
+      "sha256": "a6a39924f8ea849d0315d6026d3b56b0c2754d3054a470d205a57dcb6c4e237e"
+    },
+    {
+      "id": 14,
+      "file": "synthetic24/drive014.npz",
+      "source_group": "senior",
+      "split": "train",
+      "transitions": 10253,
+      "behavior": "behavior05",
+      "ta_seed_parts": [
+        42,
+        0,
+        3686930621,
+        3667370465,
+        1887556692,
+        3774539603
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        3686930621,
+        3667370465,
+        1887556692,
+        3774539603
+      ],
+      "sha256": "a62be8d4d1f7a0d981535597c8b1fce60a337caafb285db532e8f4828e295054"
+    },
+    {
+      "id": 15,
+      "file": "synthetic24/drive015.npz",
+      "source_group": "senior",
+      "split": "train",
+      "transitions": 11387,
+      "behavior": "behavior05",
+      "ta_seed_parts": [
+        42,
+        0,
+        2361993381,
+        2760301691,
+        2309642527,
+        2722133522
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        2361993381,
+        2760301691,
+        2309642527,
+        2722133522
+      ],
+      "sha256": "d27ce30b6805f0eb4cf2e7959ca8a03afe9937f884141adf6ae884d081f10721"
+    },
+    {
+      "id": 16,
+      "file": "synthetic24/drive016.npz",
+      "source_group": "senior",
+      "split": "train",
+      "transitions": 11109,
+      "behavior": "behavior07",
+      "ta_seed_parts": [
+        42,
+        0,
+        4140664110,
+        78523853,
+        1367331314,
+        1152516680
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        4140664110,
+        78523853,
+        1367331314,
+        1152516680
+      ],
+      "sha256": "cba7af39164d3a447a18372a14b9938f1178e7f3bf50004117cc5bd4ed22474b"
+    },
+    {
+      "id": 17,
+      "file": "synthetic24/drive017.npz",
+      "source_group": "senior",
+      "split": "train",
+      "transitions": 10463,
+      "behavior": "behavior07",
+      "ta_seed_parts": [
+        42,
+        0,
+        3382541089,
+        2689848976,
+        2468595594,
+        3882079266
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        3382541089,
+        2689848976,
+        2468595594,
+        3882079266
+      ],
+      "sha256": "ec70923d7319cc881d640300761e8d79880b79de1a43e3ec5989ba7c004c5da0"
+    },
+    {
+      "id": 18,
+      "file": "synthetic24/drive018.npz",
+      "source_group": "senior",
+      "split": "train",
+      "transitions": 10767,
+      "behavior": "behavior07",
+      "ta_seed_parts": [
+        42,
+        0,
+        791293448,
+        2759156529,
+        3409953322,
+        1596356990
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        791293448,
+        2759156529,
+        3409953322,
+        1596356990
+      ],
+      "sha256": "3b0b7b4efefcaaab512e754b3b304bfd939e8c30966d471198b8920f0b8b19d3"
+    },
+    {
+      "id": 19,
+      "file": "synthetic24/drive019.npz",
+      "source_group": "senior",
+      "split": "valid",
+      "transitions": 11876,
+      "behavior": "behavior07",
+      "ta_seed_parts": [
+        42,
+        0,
+        3162163402,
+        1396583656,
+        3514201506,
+        71509635
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        3162163402,
+        1396583656,
+        3514201506,
+        71509635
+      ],
+      "sha256": "2c450be8466cff715d7ab3a7c8ca65602e0a9d1e367a3e2c54e2759b22030546"
+    },
+    {
+      "id": 20,
+      "file": "synthetic24/drive020.npz",
+      "source_group": "senior",
+      "split": "train",
+      "transitions": 9403,
+      "behavior": "behavior07",
+      "ta_seed_parts": [
+        42,
+        0,
+        1200911912,
+        455644563,
+        849107445,
+        2600687111
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        1200911912,
+        455644563,
+        849107445,
+        2600687111
+      ],
+      "sha256": "c5a4d8bff5da102da1d3f8439608447ebf5426da0fde0b1571eb6ba5612f0431"
+    },
+    {
+      "id": 21,
+      "file": "synthetic24/drive021.npz",
+      "source_group": "senior",
+      "split": "train",
+      "transitions": 10618,
+      "behavior": "behavior07",
+      "ta_seed_parts": [
+        42,
+        0,
+        206492449,
+        2830227064,
+        2038705860,
+        2086677067
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        206492449,
+        2830227064,
+        2038705860,
+        2086677067
+      ],
+      "sha256": "d21fa857c5a3ae01ac7029bda0bcd64bf941d2534dac7935645be06c9949f38a"
+    },
+    {
+      "id": 22,
+      "file": "synthetic24/drive022.npz",
+      "source_group": "senior",
+      "split": "train",
+      "transitions": 11203,
+      "behavior": "behavior06",
+      "ta_seed_parts": [
+        42,
+        0,
+        4140758176,
+        3951136507,
+        1429287114,
+        1234164565
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        4140758176,
+        3951136507,
+        1429287114,
+        1234164565
+      ],
+      "sha256": "0f42d2616aadda2646b2290d1326fc119db28a5403aa9359f53ff371e21507bc"
+    },
+    {
+      "id": 23,
+      "file": "synthetic24/drive023.npz",
+      "source_group": "senior",
+      "split": "train",
+      "transitions": 10976,
+      "behavior": "behavior06",
+      "ta_seed_parts": [
+        42,
+        0,
+        1737942301,
+        1495784606,
+        85482761,
+        1336289806
+      ],
+      "recovery_seed_parts": [
+        42,
+        1,
+        1737942301,
+        1495784606,
+        85482761,
+        1336289806
+      ],
+      "sha256": "d64d96685103bcac23276e2e6ffdc79fcbec9515196a52cf31ceb82b7658d2de"
+    }
+  ],
+  "models": {
+    "policies/irl_senior.pth": {
+      "sha256": "14d34736468411fc40a9015ab6cadadb0094c1643b61b17e240e65ba2649a0cf",
+      "kind": "irl",
+      "group": "senior",
+      "seed": 2,
+      "step": 20000
+    },
+    "policies/bc_senior.pth": {
+      "sha256": "eee837504ccd0753c6d5844c81b79c52a8dd6137624e3ba602b22c183c2b48a1",
+      "kind": "bc",
+      "group": "senior",
+      "architecture": "squashed_gaussian"
+    },
+    "policies/irl_ordinary.pth": {
+      "sha256": "e8a424fece72bc606cf939436941ed6c28e6b4675ae4c36504611d279de2fb9d",
+      "kind": "irl",
+      "group": "ordinary",
+      "seed": 2,
+      "step": 20000
+    },
+    "policies/bc_ordinary.pth": {
+      "sha256": "8c63dc43f2079eddb1b339d9bcc40cdd39d7f35f9425621ffeba60072328c00c",
+      "kind": "bc",
+      "group": "ordinary",
+      "architecture": "iq_actor"
+    },
+    "behavior/behavior00.pth": {
+      "sha256": "a7600b8f4eeb7a2e5a96bc829b2db121eef454920225d6d0a0bd6706938f1a8a",
+      "kind": "behavior_density",
+      "group": "ordinary"
+    },
+    "behavior/behavior01.pth": {
+      "sha256": "f7664ac652df8ffb11db4e46928c280b4cbf4749779936f6706eeecdf4733334",
+      "kind": "behavior_density",
+      "group": "ordinary"
+    },
+    "behavior/behavior02.pth": {
+      "sha256": "dceceb8f164ae31cbb924af479aa940404e3ee4412b53f55b73266e6644010a7",
+      "kind": "behavior_density",
+      "group": "ordinary"
+    },
+    "behavior/behavior03.pth": {
+      "sha256": "ae74534ac5d75d7bfd957e6abb58ff8239b5bac0ecf15ee6a1778328eb6251e0",
+      "kind": "behavior_density",
+      "group": "ordinary"
+    },
+    "behavior/behavior04.pth": {
+      "sha256": "f022cb4dff7fdcb95fcd63e5cd343c28cd68765b3c13f971cef842b07bf3f090",
+      "kind": "behavior_density",
+      "group": "senior"
+    },
+    "behavior/behavior05.pth": {
+      "sha256": "1cd7a0ed396f10f9e7e09120bed1ec0ef46a9738d59fde1f8aa0df591fd8f71c",
+      "kind": "behavior_density",
+      "group": "senior"
+    },
+    "behavior/behavior06.pth": {
+      "sha256": "0dcc85b7f4dd3be9dfe4af4be84c67aa764b66110ba6f3c92a2bd2efb55b6935",
+      "kind": "behavior_density",
+      "group": "senior"
+    },
+    "behavior/behavior07.pth": {
+      "sha256": "b573d6298e961635be8da9edf7bc7993795285ed62ebc25e35747bcea9b855fd",
+      "kind": "behavior_density",
+      "group": "senior"
+    },
+    "diffusion/ordinary_s101.pt": {
+      "sha256": "8f9383b293cf9a2f378738c36c6a6d031df2f0e9d0ab2be41636cd92b1d40900",
+      "kind": "temporal_tabdiff",
+      "group": "ordinary",
+      "seed": 101
+    },
+    "diffusion/ordinary_s202.pt": {
+      "sha256": "c68d286cf26f886f315a5318ade463efa01f7407374315364270ed67aa4cf1af",
+      "kind": "temporal_tabdiff",
+      "group": "ordinary",
+      "seed": 202
+    },
+    "diffusion/senior_s101.pt": {
+      "sha256": "003063e1f1e6779d24094d4137297339cee82285d1cdac0079576e773d52aafc",
+      "kind": "temporal_tabdiff",
+      "group": "senior",
+      "seed": 101
+    },
+    "diffusion/senior_s202.pt": {
+      "sha256": "578a71b80cba844478fd63af645176f8ad91d2d0519aebd61f0680966e96b5bd",
+      "kind": "temporal_tabdiff",
+      "group": "senior",
+      "seed": 202
+    }
+  }
+}

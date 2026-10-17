@@ -1,0 +1,482 @@
+[
+  {
+    "policy": "Older-IRL",
+    "estimator": "FQE-transfer",
+    "category": "Safety",
+    "mean": -0.9961684595004449,
+    "ci_low": -1.4900584446513676,
+    "ci_high": -0.5070123530135288
+  },
+  {
+    "policy": "Older-IRL",
+    "estimator": "FQE-transfer",
+    "category": "Traffic-rule compliance",
+    "mean": -1.8622717458735376,
+    "ci_low": -2.5457948720981625,
+    "ci_high": -1.1759510444749661
+  },
+  {
+    "policy": "Older-IRL",
+    "estimator": "FQE-transfer",
+    "category": "Comfort",
+    "mean": -1.4629759563831612,
+    "ci_low": -3.6504416619168794,
+    "ci_high": 0.5793478678242495
+  },
+  {
+    "policy": "Older-IRL",
+    "estimator": "FQE-transfer",
+    "category": "Efficiency",
+    "mean": 80.74962662325966,
+    "ci_low": 68.36035933552516,
+    "ci_high": 92.93162819205058
+  },
+  {
+    "policy": "Older-IRL",
+    "estimator": "FQE-transfer",
+    "category": "Total",
+    "mean": 76.42821032139989,
+    "ci_low": 62.690173734186416,
+    "ci_high": 90.17201115791164
+  },
+  {
+    "policy": "Older-IRL",
+    "estimator": "DR-cap5",
+    "category": "Safety",
+    "mean": 1.1884733423322922,
+    "ci_low": -1.678390696667923,
+    "ci_high": 5.975402126871188
+  },
+  {
+    "policy": "Older-IRL",
+    "estimator": "DR-cap5",
+    "category": "Traffic-rule compliance",
+    "mean": 1.7369663712298191,
+    "ci_low": -1.6888204458239497,
+    "ci_high": 7.195756111636689
+  },
+  {
+    "policy": "Older-IRL",
+    "estimator": "DR-cap5",
+    "category": "Comfort",
+    "mean": -1.580848401735178,
+    "ci_low": -4.974612404037411,
+    "ci_high": 2.350168518370005
+  },
+  {
+    "policy": "Older-IRL",
+    "estimator": "DR-cap5",
+    "category": "Efficiency",
+    "mean": 115.71292692871371,
+    "ci_low": 77.63677272283127,
+    "ci_high": 176.9114661144617
+  },
+  {
+    "policy": "Older-IRL",
+    "estimator": "DR-cap5",
+    "category": "Total",
+    "mean": 117.05751824054066,
+    "ci_low": 74.20921385724589,
+    "ci_high": 186.07421251073447
+  },
+  {
+    "policy": "Older-IRL",
+    "estimator": "K-WIS",
+    "category": "Safety",
+    "mean": -3.4636630626308,
+    "ci_low": -7.1185023051293586,
+    "ci_high": -1.8081702959002577
+  },
+  {
+    "policy": "Older-IRL",
+    "estimator": "K-WIS",
+    "category": "Traffic-rule compliance",
+    "mean": -1.389917417911366e-05,
+    "ci_low": -0.02891645623305529,
+    "ci_high": -2.6645974442822683e-15
+  },
+  {
+    "policy": "Older-IRL",
+    "estimator": "K-WIS",
+    "category": "Comfort",
+    "mean": -17.18942470798064,
+    "ci_low": -25.210764138106107,
+    "ci_high": -17.119586435170582
+  },
+  {
+    "policy": "Older-IRL",
+    "estimator": "K-WIS",
+    "category": "Efficiency",
+    "mean": 22.787410490706332,
+    "ci_low": 20.016673154721307,
+    "ci_high": 26.969291513237405
+  },
+  {
+    "policy": "Older-IRL",
+    "estimator": "K-WIS",
+    "category": "Total",
+    "mean": 2.1343088209207153,
+    "ci_low": -4.2503320418116886,
+    "ci_high": 2.1343088209207153
+  },
+  {
+    "policy": "Older-BC",
+    "estimator": "FQE-transfer",
+    "category": "Safety",
+    "mean": -1.4645233375227287,
+    "ci_low": -1.6240158759561991,
+    "ci_high": -1.292589167553362
+  },
+  {
+    "policy": "Older-BC",
+    "estimator": "FQE-transfer",
+    "category": "Traffic-rule compliance",
+    "mean": -0.2341445467512434,
+    "ci_low": -0.41373638361013343,
+    "ci_high": -0.11524120013442996
+  },
+  {
+    "policy": "Older-BC",
+    "estimator": "FQE-transfer",
+    "category": "Comfort",
+    "mean": -8.294725888926122,
+    "ci_low": -9.097610629913914,
+    "ci_high": -7.648400582580103
+  },
+  {
+    "policy": "Older-BC",
+    "estimator": "FQE-transfer",
+    "category": "Efficiency",
+    "mean": 43.02170411166217,
+    "ci_low": 36.50289635691378,
+    "ci_high": 49.72265186823076
+  },
+  {
+    "policy": "Older-BC",
+    "estimator": "FQE-transfer",
+    "category": "Total",
+    "mean": 33.02831016480923,
+    "ci_low": 26.836273825416956,
+    "ci_high": 39.17880494251019
+  },
+  {
+    "policy": "Older-BC",
+    "estimator": "DR-cap5",
+    "category": "Safety",
+    "mean": -1.5520233429847803,
+    "ci_low": -1.8014551501682408,
+    "ci_high": -1.3230464709927288
+  },
+  {
+    "policy": "Older-BC",
+    "estimator": "DR-cap5",
+    "category": "Traffic-rule compliance",
+    "mean": -0.2727924038846987,
+    "ci_low": -0.44349372606679216,
+    "ci_high": -0.15785270341760754
+  },
+  {
+    "policy": "Older-BC",
+    "estimator": "DR-cap5",
+    "category": "Comfort",
+    "mean": -8.703933399198423,
+    "ci_low": -9.74891574139653,
+    "ci_high": -7.81505668373851
+  },
+  {
+    "policy": "Older-BC",
+    "estimator": "DR-cap5",
+    "category": "Efficiency",
+    "mean": 39.384204484201994,
+    "ci_low": 29.71381624566626,
+    "ci_high": 48.37413973730012
+  },
+  {
+    "policy": "Older-BC",
+    "estimator": "DR-cap5",
+    "category": "Total",
+    "mean": 28.855455338134092,
+    "ci_low": 18.58823719731905,
+    "ci_high": 37.752505469755235
+  },
+  {
+    "policy": "Older-BC",
+    "estimator": "K-WIS",
+    "category": "Safety",
+    "mean": -3.4636630626308,
+    "ci_low": -7.1185023051293586,
+    "ci_high": -3.4636630626308
+  },
+  {
+    "policy": "Older-BC",
+    "estimator": "K-WIS",
+    "category": "Traffic-rule compliance",
+    "mean": -1.389917417911366e-05,
+    "ci_low": -0.02891645623305529,
+    "ci_high": -2.6645974442822683e-15
+  },
+  {
+    "policy": "Older-BC",
+    "estimator": "K-WIS",
+    "category": "Comfort",
+    "mean": -17.18942470798064,
+    "ci_low": -25.210764138106107,
+    "ci_high": -17.119586435170582
+  },
+  {
+    "policy": "Older-BC",
+    "estimator": "K-WIS",
+    "category": "Efficiency",
+    "mean": 22.787410490706332,
+    "ci_low": 20.016673154721307,
+    "ci_high": 26.969291513237405
+  },
+  {
+    "policy": "Older-BC",
+    "estimator": "K-WIS",
+    "category": "Total",
+    "mean": 2.1343088209207153,
+    "ci_low": -4.2503320418116886,
+    "ci_high": 2.1343088209207153
+  },
+  {
+    "policy": "Younger-IRL",
+    "estimator": "FQE-transfer",
+    "category": "Safety",
+    "mean": -2.390237905072152,
+    "ci_low": -4.112492864781719,
+    "ci_high": -1.3251023009231881
+  },
+  {
+    "policy": "Younger-IRL",
+    "estimator": "FQE-transfer",
+    "category": "Traffic-rule compliance",
+    "mean": -0.32641314727596993,
+    "ci_low": -0.6622508885872472,
+    "ci_high": -0.004205926274557444
+  },
+  {
+    "policy": "Younger-IRL",
+    "estimator": "FQE-transfer",
+    "category": "Comfort",
+    "mean": -6.959666694617933,
+    "ci_low": -7.662288519916019,
+    "ci_high": -6.281840938091694
+  },
+  {
+    "policy": "Younger-IRL",
+    "estimator": "FQE-transfer",
+    "category": "Efficiency",
+    "mean": 43.27892533813914,
+    "ci_low": 38.48048974604656,
+    "ci_high": 47.777718440112146
+  },
+  {
+    "policy": "Younger-IRL",
+    "estimator": "FQE-transfer",
+    "category": "Total",
+    "mean": 33.60260749856631,
+    "ci_low": 28.868437162083058,
+    "ci_high": 37.75624775327742
+  },
+  {
+    "policy": "Younger-IRL",
+    "estimator": "DR-cap5",
+    "category": "Safety",
+    "mean": -1.8716977720287085,
+    "ci_low": -5.849016370588655,
+    "ci_high": 3.1070600268164763
+  },
+  {
+    "policy": "Younger-IRL",
+    "estimator": "DR-cap5",
+    "category": "Traffic-rule compliance",
+    "mean": -0.16977157189277933,
+    "ci_low": -1.6959306329234043,
+    "ci_high": 1.4719944647841856
+  },
+  {
+    "policy": "Younger-IRL",
+    "estimator": "DR-cap5",
+    "category": "Comfort",
+    "mean": -14.039725604112801,
+    "ci_low": -25.62065347983089,
+    "ci_high": -7.228402533111119
+  },
+  {
+    "policy": "Younger-IRL",
+    "estimator": "DR-cap5",
+    "category": "Efficiency",
+    "mean": 85.4779504487294,
+    "ci_low": 5.605973543959558,
+    "ci_high": 192.08150077947923
+  },
+  {
+    "policy": "Younger-IRL",
+    "estimator": "DR-cap5",
+    "category": "Total",
+    "mean": 69.39675550069512,
+    "ci_low": -8.295224122114153,
+    "ci_high": 168.68184880949235
+  },
+  {
+    "policy": "Younger-IRL",
+    "estimator": "K-WIS",
+    "category": "Safety",
+    "mean": -6.8010239738025735,
+    "ci_low": -9.703990027991233,
+    "ci_high": -3.601928581021035
+  },
+  {
+    "policy": "Younger-IRL",
+    "estimator": "K-WIS",
+    "category": "Traffic-rule compliance",
+    "mean": 0.0,
+    "ci_low": -0.07939367119752073,
+    "ci_high": 0.0
+  },
+  {
+    "policy": "Younger-IRL",
+    "estimator": "K-WIS",
+    "category": "Comfort",
+    "mean": -16.75048586201402,
+    "ci_low": -22.320074995324987,
+    "ci_high": -16.75048586201402
+  },
+  {
+    "policy": "Younger-IRL",
+    "estimator": "K-WIS",
+    "category": "Efficiency",
+    "mean": 15.866405723145453,
+    "ci_low": 15.866405723145453,
+    "ci_high": 44.161045597462106
+  },
+  {
+    "policy": "Younger-IRL",
+    "estimator": "K-WIS",
+    "category": "Total",
+    "mean": -7.685104112671143,
+    "ci_low": -7.685104112671143,
+    "ci_high": 16.49252135604827
+  },
+  {
+    "policy": "Younger-BC",
+    "estimator": "FQE-transfer",
+    "category": "Safety",
+    "mean": -3.5613912261194653,
+    "ci_low": -7.272320328306201,
+    "ci_high": -1.5651456392111462
+  },
+  {
+    "policy": "Younger-BC",
+    "estimator": "FQE-transfer",
+    "category": "Traffic-rule compliance",
+    "mean": -0.17654060858250079,
+    "ci_low": -0.23466987197429667,
+    "ci_high": -0.11928540447519886
+  },
+  {
+    "policy": "Younger-BC",
+    "estimator": "FQE-transfer",
+    "category": "Comfort",
+    "mean": -8.202121106700764,
+    "ci_low": -8.68221974077945,
+    "ci_high": -7.759783725099018
+  },
+  {
+    "policy": "Younger-BC",
+    "estimator": "FQE-transfer",
+    "category": "Efficiency",
+    "mean": 28.918224904272297,
+    "ci_low": 22.00348066528224,
+    "ci_high": 36.98213180889271
+  },
+  {
+    "policy": "Younger-BC",
+    "estimator": "FQE-transfer",
+    "category": "Total",
+    "mean": 16.97817172648178,
+    "ci_low": 8.957737864305576,
+    "ci_high": 25.75552583335795
+  },
+  {
+    "policy": "Younger-BC",
+    "estimator": "DR-cap5",
+    "category": "Safety",
+    "mean": -4.429139769706867,
+    "ci_low": -8.464441993906135,
+    "ci_high": -1.6575752452027348
+  },
+  {
+    "policy": "Younger-BC",
+    "estimator": "DR-cap5",
+    "category": "Traffic-rule compliance",
+    "mean": -0.08512854202907616,
+    "ci_low": -0.2318409670939482,
+    "ci_high": 0.14213804825985993
+  },
+  {
+    "policy": "Younger-BC",
+    "estimator": "DR-cap5",
+    "category": "Comfort",
+    "mean": -9.1095445242838,
+    "ci_low": -11.012913319318145,
+    "ci_high": -7.903113492312901
+  },
+  {
+    "policy": "Younger-BC",
+    "estimator": "DR-cap5",
+    "category": "Efficiency",
+    "mean": 14.324318788947458,
+    "ci_low": -21.423410729448552,
+    "ci_high": 36.26366836221242
+  },
+  {
+    "policy": "Younger-BC",
+    "estimator": "DR-cap5",
+    "category": "Total",
+    "mean": 0.7005059529277143,
+    "ci_low": -38.209376206317685,
+    "ci_high": 24.665492806005826
+  },
+  {
+    "policy": "Younger-BC",
+    "estimator": "K-WIS",
+    "category": "Safety",
+    "mean": -6.8010239738025735,
+    "ci_low": -9.703990027991233,
+    "ci_high": -3.601928581021035
+  },
+  {
+    "policy": "Younger-BC",
+    "estimator": "K-WIS",
+    "category": "Traffic-rule compliance",
+    "mean": 0.0,
+    "ci_low": -0.07939367119752073,
+    "ci_high": 0.0
+  },
+  {
+    "policy": "Younger-BC",
+    "estimator": "K-WIS",
+    "category": "Comfort",
+    "mean": -16.75048586201402,
+    "ci_low": -22.320074995324987,
+    "ci_high": -16.75048586201402
+  },
+  {
+    "policy": "Younger-BC",
+    "estimator": "K-WIS",
+    "category": "Efficiency",
+    "mean": 15.866405723145453,
+    "ci_low": 15.866405723145453,
+    "ci_high": 44.161045597462106
+  },
+  {
+    "policy": "Younger-BC",
+    "estimator": "K-WIS",
+    "category": "Total",
+    "mean": -7.685104112671143,
+    "ci_low": -7.685104112671143,
+    "ci_high": 16.49252135604827
+  }
+]

@@ -1,0 +1,232 @@
+{
+  "dataset": "synthetic data",
+  "n_trajectories": 24,
+  "n_transitions": 232525,
+  "source_counts": {
+    "younger": 12,
+    "older": 12
+  },
+  "original_comparison": {
+    "benchmark_figures": {
+      "n_trajectories": 24,
+      "n_transitions": 221008,
+      "split": "historical selected paper train24; current inner-train19/validation5; not independent test"
+    },
+    "paper_display_panels": "Actual embedded Figure5c,5d,6a; underlying rows not reconstructed for this display comparison",
+    "paper_TA_population": "Older trajectories; exact split not identified by the original figure caption",
+    "synthetic_TA_population": "All24 trajectories,12 younger-source and12 older-source"
+  },
+  "policies": [
+    {
+      "key": "senior_auto_p2",
+      "group": "senior",
+      "label": "Older-IRL",
+      "policy_seed": 2,
+      "sha256": "2cfd013341d4de20f2727faff583a5719e2f5f151273e68eead37743ddcacc63"
+    },
+    {
+      "key": "senior_BC_p0",
+      "group": "senior",
+      "label": "Older-BC",
+      "policy_seed": 0,
+      "sha256": "eee837504ccd0753c6d5844c81b79c52a8dd6137624e3ba602b22c183c2b48a1"
+    },
+    {
+      "key": "ordinary_warm_p2",
+      "group": "ordinary",
+      "label": "Younger-IRL",
+      "policy_seed": 2,
+      "sha256": "bd801f04e9369f27c73f8f2449cf6477d00da61b6027dc3f604e443367206503"
+    },
+    {
+      "key": "ordinary_bc_gaussian_p2",
+      "group": "ordinary",
+      "label": "Younger-BC",
+      "policy_seed": 2,
+      "sha256": "533a5f00a7ad68ec5a02360a5d20300c5d95ab7119fbd6c951c2c693043978c6"
+    }
+  ],
+  "FQE": "Frozen original independent FQE600 ensemble101/202/303; no synthetic refit",
+  "tsne": {
+    "config": {
+      "n_components": 2,
+      "perplexity": 50.0,
+      "random_state": 0,
+      "init": "pca",
+      "learning_rate": "auto",
+      "early_exaggeration": 12.0,
+      "max_iter": 1000,
+      "method": "barnes_hut",
+      "angle": 0.5,
+      "n_jobs": 4,
+      "verbose": 1
+    },
+    "n": 232525,
+    "feature_dim": 51,
+    "input": "All accepted synthetic states in common model frame; no new feature scaling; no score selection",
+    "differs_from_historical_paper_input": "Paper used historical per-cohort standardized states",
+    "seconds": 394.541737790918,
+    "KL": 1.318528413772583,
+    "iterations": 999,
+    "embedding_sha256": "cc8071aeaf04be5de4cea4ed4153c210a401842e239325595d9eabec38ef9a20",
+    "selection": "One predeclared fit, no rotation, no parameter or seed search"
+  },
+  "position_highlight": {
+    "thresholds": [
+      108.2883374357223,
+      162.77174545895903
+    ],
+    "highlighted": 2274,
+    "fraction": 0.009779593592086872,
+    "description": "Full-pilot p99/p99.9 color thresholds; marker area increases continuously. Differs from full continuous paper mapping."
+  },
+  "score_offsets": false,
+  "selected_illustrative_examples": true,
+  "reproduction_scope": "Computational workflow demonstration; not independent replication of original empirical findings",
+  "language": "en",
+  "figure_titles": false,
+  "figure_bottom_captions": false,
+  "comparison_order": "left: actual embedded paper panel; right: synthetic data",
+  "paper_panels": {
+    "manuscript_sha256": "9bdfa2e6c7fbf37ffcf60568f7ee913f1951105ef9657b9bc2f6adf4d7957635",
+    "figure5_media": "word/media/image6.jpeg",
+    "figure5_sha256": "ac1ec414a21268a61794cd3227925b0d65572bfcf1a93a72415c2a17b5d0d6a0",
+    "image_size": [
+      1580,
+      1140
+    ],
+    "crop_boxes": {
+      "paper_tsne": [
+        5,
+        510,
+        430,
+        825
+      ],
+      "paper_position": [
+        435,
+        535,
+        842,
+        838
+      ]
+    },
+    "figure_selection": "Resolved from the actual Figure5 caption and relationship",
+    "operation": "Exact crops; no recoloring or curve reconstruction",
+    "original_document_edited": false,
+    "OPE_format": {
+      "column_groups": [
+        "DR",
+        "FQE",
+        "K-WIS"
+      ],
+      "subcolumns": [
+        "Mean",
+        "95% CI"
+      ],
+      "DQI_groups": [
+        {
+          "label": "Safety",
+          "policies": [
+            "Older-IRL",
+            "Older-BC",
+            "Younger-IRL",
+            "Younger-BC"
+          ]
+        },
+        {
+          "label": "Traffic-Rule Compliance",
+          "policies": [
+            "Older-IRL",
+            "Older-BC",
+            "Younger-IRL",
+            "Younger-BC"
+          ]
+        },
+        {
+          "label": "Comfort",
+          "policies": [
+            "Older-IRL",
+            "Older-BC",
+            "Younger-IRL",
+            "Younger-BC"
+          ]
+        },
+        {
+          "label": "Efficiency",
+          "policies": [
+            "Older-IRL",
+            "Older-BC",
+            "Younger-IRL",
+            "Younger-BC"
+          ]
+        },
+        {
+          "label": "Total",
+          "policies": [
+            "Older-IRL",
+            "Older-BC",
+            "Younger-IRL",
+            "Younger-BC"
+          ]
+        }
+      ]
+    }
+  },
+  "removed_figure": "07_limitations_spatial",
+  "figures": [
+    "00_temporal_diffusion_overview",
+    "01_similarity_route",
+    "02_similarity_marginals",
+    "04_synthetic_tsne",
+    "05_position_high_gap",
+    "06_ta_distributions",
+    "06b_ta_dsnips",
+    "08_limitations_diagnostics",
+    "09_limitations_state_relationships"
+  ],
+  "TA_layout": "TA-Adv and TA-dSNIPS separately; ODA upper/YDA lower; original left/synthetic right; same corresponding x-limits",
+  "position_comparison": "Latest Figure5d on left; existing synthetic high-gap overlay on right; display rules remain distinct",
+  "tsne_comparison": "Latest manuscript Figure5c on left; existing synthetic embedding on right; distinct panels, same normalized color range",
+  "release_root": "vr_github_latest",
+  "CSV_included": false,
+  "OPE_table_format": "Paper Table1: DQI row groups, four policies, DR/FQE/K-WIS grouped Mean/95% CI columns",
+  "position_scale_legend": false,
+  "position_scenarios": "Scenario1–4 callouts point to actual synthetic rows nearest within-scenario coordinate medians; paper-style text and leader lines. Original real-data region boundaries are not reused.",
+  "core_figure_command": "python -m synthetic_generation.figures --output outputs/figures",
+  "core_renderer_sha256": "32e73fe1ca021cd24993a1a40685f6039f3469c5c81285f72252171e6f90fec2",
+  "plot_input_manifest": "inputs/manifest.json",
+  "core_figure_runtime": "CPU, Python>=3.11; dependencies in requirements-figures.txt; rendering cached plot inputs, no private data/weights or score/embedding refit",
+  "generation_model": {
+    "basis": "Temporal adaptation of TabDiff, Shi et al., ICLR2025",
+    "reference": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/5c882988ce5fac487974ee4f415b96a9-Abstract-Conference.html",
+    "numerical_preconditioning_reference": "https://arxiv.org/abs/2206.00364",
+    "architecture": "Feature attention alternated with temporal attention;2blocks,width32,4heads;32row context,128row generation",
+    "loss": {
+      "numerical": "EDM-weighted reconstruction MSE",
+      "categorical": "Masked categorical schedule-weighted CE",
+      "delta": "Confidence-weighted first-difference reconstruction MSE",
+      "boundary": "First-difference reconstruction MSE at context/target seam",
+      "progress": "Confidence-weighted smooth-L1 on cumulative road-progress errors",
+      "weights": {
+        "numerical": 1,
+        "categorical": 1,
+        "delta": 0.1,
+        "boundary": 1,
+        "progress": 0.1
+      }
+    }
+  },
+  "architecture_overview": {
+    "figure": "figures/00_temporal_diffusion_overview.svg",
+    "png_preview": "figures/00_temporal_diffusion_overview.png",
+    "source": "synthetic_generation/overview.py",
+    "source_sha256": "78ebad7743664cbb6effbba53d710cfa2945de81a5c6aa1cb29a3c31c3548b95",
+    "description": "Actual mixed-type temporal denoiser, its conditioning and objective, and segment-by-segment sampling; schematic only, no data processing",
+    "basis": [
+      "synthetic_generation/diffusion.py",
+      "synthetic_generation/diffusion_train.py",
+      "synthetic_generation/trajectory.py"
+    ],
+    "new_results": false
+  },
+  "readme_execution_section": "Commands only; implementation/input/metadata/checksum link sentence removed at user request"
+}
